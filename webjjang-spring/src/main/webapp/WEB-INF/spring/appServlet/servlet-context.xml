@@ -21,6 +21,8 @@
 		<beans:property name="suffix" value=".jsp" />				<!--  뒤에 붙이는 이름 -->
 	</beans:bean>
 	
+	
+	<!-- context 자동 생산하기 위해서 scan -->
 	<context:component-scan base-package="org.zerock" />
 <!-- 	<context:component-scan base-package="org.zerock.controller" /> -->
 	
