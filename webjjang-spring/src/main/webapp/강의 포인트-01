@@ -1,0 +1,107 @@
+
+# java verson 설정
+-vm
+C:\Program Files(86)\Java\jdk1.7.0_75\bin\javaw.exe
+
+
+# 이클립스 editor 인코딩 설정
+-Dfile.encoding=UTF-8
+# -Duser.name="spring"
+
+# using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+# 에러시 아래의 라인을 pom.xml에 추가
+<properties>
+	<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+	<project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+</properties>
+
+
+스프링(Spring Framework)의 특징
+	DI(의존성 주입)
+		DI를 통해 객체간의 의존성 관리
+		객체 간 결합을 낮춰 유연한 코드 작성
+	
+	IoC(제어의 역전)
+		객체의 생성과 관리를 Framework가 담당
+		애플리케이션의 느슨한 결합 도모
+	 
+	AOP(Aspect-Oriented Programming)
+		트랜잭션이나 로깅,보안 등 여러 모듈에서 공통적으로 사용하는 기능을 모듈화
+		 
+	경량(Light-weighted)
+		자원을 적게 사용하면서도 필요한 기능을 제공
+	
+
+
+#controller의 설정
+
+# @RequestMapping의 GET방식 요청과 POST방식 요청
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+
+여러가지 방식의 	RequestMethod의 종류
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.HEAD)
+	@RequestMapping(value = "/", method = RequestMethod.PUT) - 데이터 넣을때
+	@RequestMapping(value = "/", method = RequestMethod.PATCH) - 데이터 가져오기
+	@RequestMapping(value = "/", method = RequestMethod.DELETE) - 데이터 지우기
+	@RequestMapping(value = "/", method = RequestMethod.TRACE)
+	@RequestMapping(value = "/", method = RequestMethod.OPTION)
+
+
+<일반 게시판 흐름 만들기
+1. 일반 게시판 리스트
+	BoardController - list.do
+	/board/list.do - get방식 -> @GetMapping(uri) - board/list.jsp
+	
+2. 일반게시판 글보기
+	BoardController - view.do
+	/board/view.do - get방식 -> @GetMapping(uri) - board/view.jsp
+	
+3-1. 	일반게시판 글등록
+	BoardController - writeFrom.do
+	/board/writeFrom.do - get방식 -> @GetMapping(uri) - board/writeFrom.jsp
+	
+3-2. 	일반게시판 글등록 처리
+	BoardController - write.do
+	/board/write.do - post방식 -> @PostMapping(uri) - redirect:list.do
+	
+4-1. 	일반게시판 글수정 폼
+	BoardController - updateForm.do
+	/board/updateForm.do - get방식 -> @GetMapping(uri) - board/updateForm.jsp
+		
+4-2. 	일반게시판 글수정 처리
+	BoardController - update.do
+	/board/update.do - post방식 -> @PostMapping(uri) - board/update	
+	
+5. 	일반게시판 글 삭제
+	BoardController - delete.do
+	/board/delete.do - post방식 -> @PostMapping(uri) - redirect:list.do	
+	
+
+자동생성과  자동 DI를 위한 설정	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
