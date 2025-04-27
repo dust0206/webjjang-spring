@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+		<!--  namespace : resources에서 만들때 interface의 위치와 같이 package가 같아야 한다. -->
+<mapper namespace="org.zerock.sample.mapper.TimeMapper">
+	
+	<!-- 
+		id가  method명이랑 같아아 한다
+		resultType : 결과는 String의 형태로 받는다
+					 DTO 면은 패키지명을 전부다 주거나 설정하면은 간단하게 할수도 있다
+	 -->
+	<select id="timeMapper" resultType="String" >
+		select sysdate from dual
+	</select>
+	
+</mapper>

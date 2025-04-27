@@ -2,7 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<!-- ns(namespace) -->
 	
@@ -13,6 +15,7 @@
 <!-- 	<beans:bean> 위의 ns가 beans로 기본으로 되어 있지 않으면은 <beans:bean>으로 설정해서 사용해야 한다-->
 
 	<!-- 
+		DB 연결 1단계
 		id : 다른데서 같다 쓰기 위해서 고유한 식별한 값이다
 	-->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
@@ -31,11 +34,24 @@
 		<constructor-arg ref="hikariConfig" />
 	</bean>
 	
-	<!-- mybatis와 연결해서 sql 쿼리 -->
+	<!-- 
+		DB 연결 2단계
+		mybatis와 연결해서 sql 쿼리 
+	-->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
+	<!-- 추후 테스트 확인  
+		DB 연결 3단계 작성 
+	-->
+<!-- 	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession"> -->
+<!-- 	     sql 명령어 실행을 위한 도구에 대한참조 -->
+<!-- 	    <constructor-arg ref="sqlSessionFactory"/> -->
+<!-- 	</bean> -->
+	
+	<!--  mybatis를 만들어서 scan할 위치 -->
+	<mybatis-spring:scan base-package="org.zerock" />
 	
 	<!-- context 자동 생산하기 위해서 scan  -->
 	<context:component-scan base-package="org.zerock" />
