@@ -2,26 +2,39 @@ package org.zerock.board.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.zerock.board.service.BoardService;
 
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-//@Slf4j
+@Slf4j
 @RequestMapping("/board")
 public class BoardController {
 
-		private static final Logger log = LoggerFactory.getLogger(BoardController.class);
+//		private static final Logger log = LoggerFactory.getLogger(BoardController.class);
 		
+		// 자동 DI
+		@Setter(onMethod_ = @Autowired)
+		@Qualifier("boardService")
+//		@Autowired
+		private BoardService service;
 		
 //		@GetMapping("/board/list.do")
 		@GetMapping(value = "/list.do")  // 속성을 더 넣을려면은 value를 쓰면 된다
+//		@RequestMapping(value = "/list.do", method = RequestMethod.GET)	// @RequestMapping으로 하기
 		public String list() {
-			log.info("list() : ");
-			System.out.println("BoardController.list");
+			log.info("BoardController.list실행");
+//			log.info("BoardController.list" + Thread.currentThread().getStackTrace()[1].getMethodName());
+//			System.out.println("BoardController.list");
+			service.list();
 			
 			return "board/list";
 		}

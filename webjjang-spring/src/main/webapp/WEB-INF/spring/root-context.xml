@@ -9,7 +9,37 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- 다른 모든 웹 구성 요소에서 볼 수 있는 공유 리소스를 정의합니다. -->	
 	
+	<!-- HikariCP 설정 -->
+<!-- 	<beans:bean> 위의 ns가 beans로 기본으로 되어 있지 않으면은 <beans:bean>으로 설정해서 사용해야 한다-->
+
+	<!-- 
+		id : 다른데서 같다 쓰기 위해서 고유한 식별한 값이다
+	-->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@//127.0.0.1:1521/XE" />
+		<property name="username" value="scott" />
+		<property name="password" value="tiger" />
+	</bean>
+	
+	<!-- 
+		dataSource : 정해져 있는 고유한 값이다
+		ref : reference(참고, 참조)  
+		destroy-method : 연결을 close method를 사용해서 닫는다
+	 -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+	
+	<!-- mybatis와 연결해서 sql 쿼리 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	
 	<!-- context 자동 생산하기 위해서 scan  -->
 	<context:component-scan base-package="org.zerock" />
+	
+	
 	
 </beans>

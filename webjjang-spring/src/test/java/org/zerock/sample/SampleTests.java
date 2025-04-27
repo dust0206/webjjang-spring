@@ -1,8 +1,14 @@
 package org.zerock.sample;
 
 
+import static org.junit.Assert.assertNotNull;
+
+import javax.inject.Inject;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -21,15 +27,24 @@ import lombok.extern.log4j.Log4j;
 public class SampleTests {
 	
 	// 레스토랑의 자동 생성과 DI를 확인을 위해 객체 전달 : 자동 DI
-	@Setter(onMethod_ = @Autowired)
-//	@Setter(onMethod_ = {@Autowired, @Inject})	// spring의 Autowired를 사용해서 안되면은  JAVA의 Inject을 사용 
+//	@Setter(onMethod_ = @Autowired)
+	@Setter(onMethod_ = {@Autowired, @Inject})	// spring의 Autowired를 사용해서 안되면은  JAVA의 Inject을 사용 
 //	@Autowired
 //	@Inject
 	private Restaurant restaurant;
 	
 	// 테스팅할 method 작성 -> 여러개 가능 : 한꺼번에 다 테스트 한다
+	// assert : 주장하다
 	@Test
 	public void testExist() {
+		// notnull 인지 확인
+		assertNotNull(restaurant);
 		
+		// 출력해서 확인해 보기
+		log.info(restaurant);
+		log.warn("www---------------------------------------");
+		log.info("---------------------------------------");
+		log.info(restaurant.getChef());
+//		log.error(log);
 	}
 }
