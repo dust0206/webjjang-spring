@@ -54,6 +54,7 @@ public class DataSourceTests_mybatis {
 			Connection conn = session.getConnection()) {
 			log.info(session);
 			log.info(conn);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			fail(e.getMessage());
