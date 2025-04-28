@@ -1,8 +1,16 @@
 package org.zerock.board.service;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.zerock.board.mapper.BoardMapper;
+import org.zerock.board.vo.BoardVO;
 
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 //// 자동 생성을 위한 어노테이션
@@ -14,7 +22,16 @@ import lombok.extern.log4j.Log4j;
 @Qualifier("boardService")	// @Qualifier : 예선 통과자 - 여러개중에 한개 통과
 public class BoardService {
 	
-	public void list() {
+	// 자동 DI 적용
+	//   1. @Setter(onMethod_ = @Autowired)
+	//   2. @Autowired 
+	//   3. @Inject
+	
+	@Inject
+	private BoardMapper mapper;
+	
+	public List<BoardVO> list() {
 		log.info("list() 실행 ");
+		return mapper.list();
 	}
 }

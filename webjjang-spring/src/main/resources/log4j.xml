@@ -32,6 +32,18 @@
 	<logger name="org.springframework.web">
 		<level value="info" />
 	</logger>
+	
+	<logger name="jdbc.audit">
+		<level value="warn" />
+	</logger>
+	
+	<logger name="jdbc.resultset">
+		<level value="warn" />
+	</logger>
+	
+	<logger name="jdbc.connection">
+		<level value="warn" />
+	</logger>
 
 	<!-- Root Logger -->
 	<root>
@@ -40,7 +52,7 @@
 	</root>
 <!-- 
 	<priority value="warn" />
-	 => 
+	 에서 아래와 같이 변경
 	<priority value="info" />
 	
 	1) TRACE

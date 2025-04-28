@@ -1,5 +1,7 @@
 package org.zerock.board.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +32,11 @@ public class BoardController {
 //		@GetMapping("/board/list.do")
 		@GetMapping(value = "/list.do")  // 속성을 더 넣을려면은 value를 쓰면 된다
 //		@RequestMapping(value = "/list.do", method = RequestMethod.GET)	// @RequestMapping으로 하기
-		public String list() {
-			log.info("BoardController.list실행");
+		public String list(HttpServletRequest request) {
+			log.info("BoardController.list.do");
 //			log.info("BoardController.list" + Thread.currentThread().getStackTrace()[1].getMethodName());
 //			System.out.println("BoardController.list");
-			service.list();
+			request.setAttribute("list", service.list());
 			
 			return "board/list";
 		}

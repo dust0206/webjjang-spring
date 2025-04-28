@@ -19,8 +19,13 @@
 		id : 다른데서 같다 쓰기 위해서 고유한 식별한 값이다
 	-->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+<!-- 	순수한 Oracle 드라이버 사용 DB 처리
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@//127.0.0.1:1521/XE" />
+ -->
+ 		<!-- log4jdbc-log4j2 - 로그 출력 드라이버 사용 -->
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@//127.0.0.1:1521/XE" />
 		<property name="username" value="scott" />
 		<property name="password" value="tiger" />
 	</bean>

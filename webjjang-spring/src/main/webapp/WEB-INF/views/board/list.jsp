@@ -9,6 +9,6 @@
 	</head>
 <body>
 	<h2>일반 게시판 리스트</h2><br>
-	<h2>list.jsp</h2>
+	${list }
 </body>
 </html>
