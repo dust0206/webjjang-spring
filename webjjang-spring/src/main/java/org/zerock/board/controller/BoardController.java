@@ -33,7 +33,7 @@ public class BoardController {
 		@GetMapping(value = "/list.do")  // 속성을 더 넣을려면은 value를 쓰면 된다
 //		@RequestMapping(value = "/list.do", method = RequestMethod.GET)	// @RequestMapping으로 하기
 		public String list(HttpServletRequest request) {
-			log.info("BoardController.list.do");
+			log.info("list.do");
 //			log.info("BoardController.list" + Thread.currentThread().getStackTrace()[1].getMethodName());
 //			System.out.println("BoardController.list");
 			request.setAttribute("list", service.list());
