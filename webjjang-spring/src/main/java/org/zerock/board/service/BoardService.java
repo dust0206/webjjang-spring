@@ -30,8 +30,26 @@ public class BoardService {
 	@Inject
 	private BoardMapper mapper;
 	
+	// 일반 게시판 리스트
 	public List<BoardVO> list() {
 		log.info("list() 실행 ");
 		return mapper.list();
 	}
+	
+	// 일반 게시판 등록
+	public int write(BoardVO vo) {
+		log.info("write() + vo " + vo);
+		return mapper.write(vo);
+	}
+
+	// 일반 게시판 글보기
+	public BoardVO view(Long no, int inc) {
+		log.info("view()");
+		log.info("no : " + no);
+		log.info("inc : " + inc);
+		if(inc == 1) mapper.inc(no);
+		return mapper.view(no);
+	}
+	
+	
 }

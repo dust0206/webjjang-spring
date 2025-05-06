@@ -1,14 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Insert title here</title>
+	<title>Board :: 일반 게시판 리스트</title>
+	<jsp:include page="../jsp/webLib.jsp"></jsp:include>
+<style>
+	.dataRow>.card-header {
+		background:#e0e0e0;
+	}
+</style>	
+<script>
+	$(function(){
+		
+		// 이벤트 처리
+		// 글보기 이동 처리
+		$(".dataRow").click(function() {
+			let no = $(this).data("no");
+// 			location = "view.do?no=" + no
+			// alert(no)
+			location = "view.do?no=" + no + "&inc=1"
+		});
+	});
+
+</script>
 	</head>
 <body>
-	<h2>일반 게시판 리스트</h2><br>
-	${list }
+<div class="container">
+	<div class="card">
+		<div class="card-header"><h2>일반 게시판 리스트</h2></div>
+		<div class="card-body">
+			<c:forEach items="${list }" var="vo">
+				<div class="card dataRow" data-no="${vo.no }">
+					<div class="card-header">
+						<span class="float-right">조회수 : ${vo.hit }</span>
+						글번호 : ${vo.no }
+					</div>
+					<div class="card-body">
+						<pre>${vo.title }</pre>
+					</div>
+					<div class="card-footer">
+						<span class="float-right">
+							<fmt:formatDate value="${vo.writeDate }" /> 
+<%-- 							<fmt:formatDate value="${vo.writeDate }" pattern="yyyy-MM-dd"/>  --%>
+						</span>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+		<div class="card-footer">
+			<a href="writeForm.do" class="btn btn-primary float-right">글등록</a>
+		</div>
+	</div>
+	
+	
+	
+</div>
 </body>
 </html>

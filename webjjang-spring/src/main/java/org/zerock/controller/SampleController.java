@@ -1,11 +1,16 @@
 package org.zerock.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.zerock.domain.SampleDTO;
+import org.zerock.domain.TodoDTO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -50,13 +55,37 @@ public class SampleController {
 	}
 	
 	// get방식 매핑
-	@GetMapping("ex02") 
+	@GetMapping("/ex02") 
 	// parameter 변수로 받기 - 변수명과 name이 같아야 한다. age가 없으면 오류가 난다.
 	// age의 값이 안들어 오면 기본값을 0으로 세팅해서 사용 - @RequestParam을 사용한다.
 	// 넘오는 값이 없을경우 기본값으로 만들기 위해서  @RequestParam(defaultValue = "0")을 사용한다. 
 	// 		0(int) 은 "0"(String)로 하는 이유는 넘어오는 값이 String이기 때문이다
+	
 	public String ex02(@RequestParam("name") String name, @RequestParam(defaultValue = "0", name="age") int age) {
 		log.info("ex02().name = " + name + ", age = " + age);
 		return "ex02";
+	}
+	
+	// get방식 매핑
+	@GetMapping("/ex02List") 
+	// parameter 변수로 받기 - 아이디 여러개를 받아서 처리 - List / 배열 선언해서 사용 가능
+	// @RequestParam 옵션을 주어야 ids 값이 전달된다
+	public String ex02List(
+			// List로 여러개의 데이터를 받을때는 @RequestParam 이 꼭 필요하다. 없으면 데이터를 안 받는다
+			// http://localhost:8080/webjjang-spring/sample/ex02List?ids=aaa&ids=bbb&ids=ccc 파라미터 넘기는 방법
+			
+			// 배열로 여러개의 데이터를 받을때는 @RequestParam 필요 없음(있어도 되고 없어도 된다)
+			// http://localhost:8080/webjjang-spring/sample/ex02List?ids=aaa&ids=bbb&ids=ccc&ids=ddd&names=test&names=test2
+			@RequestParam("ids") ArrayList<String> ids, String[] names) {
+		log.info("ex02List().ids = " + ids + " , names = " + Arrays.toString(names)); 
+		return "ex02List";
+	}
+	
+	// get방식 매핑
+	@GetMapping("/ex03")
+	// parameter  변수로 날짜 데이터 받기. DTO에  @DateTimeFormat(pattern = "yyyy-MM-dd")
+	public String ex03(TodoDTO  dto) {
+		log.info("ex03().dto = " + dto);
+		return "ex03";
 	}
 }
