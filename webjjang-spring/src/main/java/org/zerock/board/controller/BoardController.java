@@ -1,6 +1,8 @@
 package org.zerock.board.controller;
 
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.zerock.board.service.BoardService;
 import org.zerock.board.vo.BoardVO;
+import org.zerock.page.PageObject;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -33,7 +36,7 @@ public class BoardController {
 		@GetMapping(value = "/list.do")  // 속성을 더 넣을려면은 value를 쓰면 된다
 //		@RequestMapping(value = "/list.do", method = RequestMethod.GET)	// @RequestMapping으로 하기
 //		public ModelAndView list() {
-		public String list(Model model) {
+		public String list(Model model, HttpServletRequest request) throws Exception {
 //		public String list(HttpServletRequest request) {
 			log.info("list.do");
 //			log.info("BoardController.list" + Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -43,8 +46,14 @@ public class BoardController {
 //			request.setAttribute("list", service.list());
 //			 return "board/list";
 			
+			// 페이지 처리를 위한 객체 생성
+			PageObject pageObject = PageObject.getInstance(request);
+			
+			
 			// model에 담으면 reqeust에 자동으로 담기게 된다 (reqeustScope에 담기게 된다)
-			model.addAttribute("list", service.list());
+			model.addAttribute("list", service.list(pageObject));
+			log.info(pageObject);
+			model.addAttribute("pageObject", pageObject);
 			return "board/list";
 			
 			// ModelAndView
@@ -55,7 +64,7 @@ public class BoardController {
 			
 		}
 		
-		
+		// 일반 게시판 글 등록 폼
 		@GetMapping(value = "/writeForm.do")
 		public String writeFrom() {
 			log.info("writeForm.do");
@@ -63,6 +72,7 @@ public class BoardController {
 			return "/board/writeForm";
 		}
 		
+		// 일반 게시판 글 등록 처리
 		@PostMapping(value = "/write.do")
 		public String write(BoardVO vo) {
 			log.info("write.do");
@@ -71,11 +81,12 @@ public class BoardController {
 			return "redirect:list.do";
 		}
 		
+		// 일반 게시판 글보기
 		@GetMapping(value = "/view.do")
 		public String view(Model model, Long no, int inc) {
 			log.info("view.do");
 			
-			model.addAttribute("vo", service.view(no,inc));
+			model.addAttribute("vo", service.view(no, inc));
 			
 			return "board/view";
 		}

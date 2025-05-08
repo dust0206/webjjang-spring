@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.zerock.board.mapper.BoardMapper;
 import org.zerock.board.vo.BoardVO;
+import org.zerock.page.PageObject;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -31,9 +32,13 @@ public class BoardService {
 	private BoardMapper mapper;
 	
 	// 일반 게시판 리스트
-	public List<BoardVO> list() {
+	public List<BoardVO> list(PageObject pageObject) {
 		log.info("list() 실행 ");
-		return mapper.list();
+		
+		// page 관련 전체 데이터 갯수 구하기
+		pageObject.setTotalRow(mapper.getTotalRow(pageObject));
+		
+		return mapper.list(pageObject);
 	}
 	
 	// 일반 게시판 등록
@@ -47,7 +52,7 @@ public class BoardService {
 		log.info("view()");
 		log.info("no : " + no);
 		log.info("inc : " + inc);
-		if(inc == 1) mapper.inc(no);
+		if(inc == 1) mapper.increase(no);
 		return mapper.view(no);
 	}
 	

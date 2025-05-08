@@ -17,6 +17,10 @@
 		 -->
 		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+		
+		<!-- 현재 진행하고 있는 프로젝트의 절대 위치로 변경해서 사용하셔야만 합니다. -->
+		<project.basedir>C:\eclipse-spring\workspace\webjjang_spring</project.basedir>
+
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -196,6 +200,18 @@
 		    <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
 		    <version>1.16</version>
 		</dependency>
+		
+	<!-- 페이지 처리 -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.webjjang</groupId> -->
+<!-- 			<artifactId>util.PageObject</artifactId> -->
+<!-- 			<version>2.1</version> -->
+<!-- 			<scope>system</scope> 내 컴퓨터에서 찾겠다 -->
+			<!-- lombok lib를 설치하면 project.basedir 프로퍼티가 사라져서 오류가 난다.
+			해결 : 프로퍼트 등록 해준다. -->
+<!-- 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/pageObject2.1.jar</systemPath> -->
+<!-- 		</dependency> -->
+
 		
 		
 		
