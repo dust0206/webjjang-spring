@@ -212,7 +212,20 @@
 <!-- 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/pageObject2.1.jar</systemPath> -->
 <!-- 		</dependency> -->
 
-		
+	<!-- 
+		sitemesh란 : 
+			웹페이지를 구성하는 레이아웃을 효율적으로 만들수 있게 도와주는 프레임워크.
+			보통 웹페이지들은 top, left menu, contents, (right menu), footer로 구성되는데 
+			메뉴이동시 그 폼을 유지한채 중간의 컨텐츠만 변경되는 경우가 대부분인데 
+			모든 페이지를 중복으로 구성하는 것은 비효율적이고 관리도 어렵기 때문에
+			공통된 부분들을 한곳에 집중 해서 처리하고 변경되는 부분만 변경될 수 있도록 해주는 프레임워크이다.
+	 -->
+		<!-- https://mvnrepository.com/artifact/opensymphony/sitemesh -->
+		<dependency>
+		    <groupId>opensymphony</groupId>
+		    <artifactId>sitemesh</artifactId>
+		    <version>2.4.2</version>
+		</dependency>
 		
 		
 		

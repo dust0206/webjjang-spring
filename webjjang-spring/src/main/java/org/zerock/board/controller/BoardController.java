@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.board.service.BoardService;
 import org.zerock.board.vo.BoardVO;
-import org.zerock.page.PageObject;
+import org.zerock.common.util.page.PageObject;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -74,10 +75,15 @@ public class BoardController {
 		
 		// 일반 게시판 글 등록 처리
 		@PostMapping(value = "/write.do")
-		public String write(BoardVO vo) {
+		public String write(BoardVO vo, RedirectAttributes rttr) {
 			log.info("write.do");
 			log.info(vo);
 			service.write(vo);
+			
+			// 처리 결과에 대한 메시지 처리
+			// 딱 한번만 쓰고 버릴수 있는 값을 저장 - session에 저장되어 있다가 한번쓰고 지워짐
+			rttr.addFlashAttribute("msg", "일반 게시판 글등록이 되었습니다.");
+			
 			return "redirect:list.do";
 		}
 		

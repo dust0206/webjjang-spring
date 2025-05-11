@@ -31,5 +31,37 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>	<!-- 모든 url -->
 	</servlet-mapping>
+	
+	<!--  필터 등록 : slitemesh, Spring 한글 처리 -->
+	<!--  sitemesh 필터 등록 - 
+		sitemesh.xml, decorators.xml : /WEB-INF 에 파일 위치
+		default_decorator.jsp  : /WEB-INF/view/decorator 에 파일 위치
+	-->
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	
+	<!-- 한글 필터  -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
 
 </web-app>

@@ -1,4 +1,4 @@
-package org.zerock.page;
+package org.zerock.common.util.page;
 
 import javax.servlet.http.HttpServletRequest;
 

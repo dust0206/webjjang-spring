@@ -50,7 +50,7 @@
 			<button class="btn btn-primary" id="updateBtn">수정</button>
 			<!--  모달창을 열어서 비밀번호를 입력 받고 삭제하여 가는 처리 -->
 			<button class="btn btn-danger" id="deleteBtn">글삭제</button>
-			<button class="btn btn-warning" >취소</button>
+			<button class="btn btn-warning cancelBtn" >취소</button>
 		</div>
 	</div>
 	

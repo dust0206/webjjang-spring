@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.zerock.board.mapper.BoardMapper;
 import org.zerock.board.vo.BoardVO;
-import org.zerock.page.PageObject;
+import org.zerock.common.util.page.PageObject;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;

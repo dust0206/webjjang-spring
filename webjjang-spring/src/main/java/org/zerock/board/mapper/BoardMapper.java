@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 import org.zerock.board.vo.BoardVO;
-import org.zerock.page.PageObject;
+import org.zerock.common.util.page.PageObject;
 
 
 

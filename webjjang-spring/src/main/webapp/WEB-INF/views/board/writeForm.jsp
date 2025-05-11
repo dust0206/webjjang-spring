@@ -8,46 +8,35 @@
 	<title>board :: 일반게시판 글등록</title>
 	</head>
 <body>
-	<h2>일반게시판 글등록</h2>
-	<form action="write.do" method="post">
-		<table>
-			<tr>
-				<th>제목</th>
-				<td>
-					<input name="title" >
-				</td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td>
-					<textarea name="content" rows="5"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td>
-					<input name="writer" >
-				</td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td>
-					<input type="password" name="pw" >
-				</td>
-			</tr>
-			<tr>
-				<th>비밀번호 확인</th>
-				<td>
-					<input type="password" name="pw2" >
-				</td>
-			</tr>
-			<tr>
-				
-				<td colspan="2">
-					<button>글등록</button>
-				</td>
-			</tr>
-		</table>
-	</form>
+	<div class="container">
+		<h2>일반게시판 글등록</h2>
+		<form action="write.do" method="post">
+			<div class="form-group">
+				<label for="title">제목</label>
+				<input class="form-control" name="title" id="title" required="required">
+			</div>
+			<div class="form-group">
+				<label for="content">내용</label>
+				<textarea class="form-control" name="content" id="content"  required="required" rows="7"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="writer">작성자</label>
+				<input class="form-control" name="writer" id="writer"  required="required">
+			</div>
+			<div class="form-group">
+				<label for="pw">비밀번호</label>
+				<input type="password" class="form-control"  name="pw" id="pw" required="required">
+			</div>
+			<div class="form-group">
+				<label for="pw2">비밀번호 확인</label>
+				<input type="password" class="form-control"  name="pw2" id="pw2" required="required">
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary">글등록</button>
+				<button type="reset" class="btn btn-warning">새로입력</button>
+				<button type="button" class="btn btn-success cancelBtn">취소</button>
+			</div>
+		</form>
+	</div>
 </body>
 </html>
