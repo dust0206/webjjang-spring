@@ -75,14 +75,14 @@ public class BoardController {
 		
 		// 일반 게시판 글 등록 처리
 		@PostMapping(value = "/write.do")
-		public String write(BoardVO vo, RedirectAttributes rttr) {
+		public String write(BoardVO vo, RedirectAttributes rattr) {
 			log.info("write.do");
 			log.info(vo);
 			service.write(vo);
 			
 			// 처리 결과에 대한 메시지 처리
 			// 딱 한번만 쓰고 버릴수 있는 값을 저장 - session에 저장되어 있다가 한번쓰고 지워짐
-			rttr.addFlashAttribute("msg", "일반 게시판 글등록이 되었습니다.");
+			rattr.addFlashAttribute("msg", "일반 게시판 글등록이 되었습니다.");
 			
 			return "redirect:list.do";
 		}

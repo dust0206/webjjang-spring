@@ -229,7 +229,7 @@
 		<p>이 홈페이지의 저작권은 이영환에게 있습니다.</p>
 	</footer>
 	
-	<c:if test="${!empty resultMessage }">
+	<c:if test="${ !empty resultMessage }">
 		  <!-- The Modal -->
 		  <div class="modal fade" id="msgModal">
 		    <div class="modal-dialog">
